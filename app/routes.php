@@ -38,6 +38,7 @@ Route::get('/rolldice/{guess}', function($guess)
 {
 	
 	$roll = rand(1, 6);
+	
 	$data = array (
 		'guess' => $guess,
 		'roll' => $roll 
