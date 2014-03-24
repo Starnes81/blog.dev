@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return "Hello";
 });
 
 Route::get('/resume', function()
@@ -24,4 +24,24 @@ Route::get('/resume', function()
 Route::get('/portfolio', function()
 {
     return "This is my portfolio.";
+});
+
+Route::get('/sayhello/{name}', function($name)
+{
+	$data = array(
+		'name' => $name
+		);
+	return View::make('my-first-view')->with($data);
+});
+
+Route::get('/rolldice/{guess}', function($guess)
+{
+	
+	$roll = rand(1, 6);
+	$data = array (
+		'guess' => $guess,
+		'roll' => $roll 
+		);
+	return View::make('roll-dice')->with($data);
+
 });
