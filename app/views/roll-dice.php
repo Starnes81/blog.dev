@@ -6,10 +6,12 @@
 <body>
     
     <? if ($roll == $guess): ?>
-    	<h1><?= $roll; ?></h1>
-    		<h1> Match! </h1>
+    	<h1><?= $roll . ' | ' . $guess; ?></h1>
+    		<h1> You Win! </h1>
 	<? else: ?>
-			<h1> Not a Match! </h1>
+			<h1><?= $roll . ' | ' . $guess; ?></h1>
+			<h1> You Lose! </h1>
+
 	<? endif; ?>
 </body>
 </html>
