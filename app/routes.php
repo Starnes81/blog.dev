@@ -13,9 +13,6 @@
 
 Route::get('/', 'HomeController@showWelcome');
 
-// 	return "Hello";
-// });
-
 Route::get('/resume', 'HomeController@showResume');
 
 Route::get('/portfolio', 'HomeController@showPortfolio');
@@ -23,10 +20,6 @@ Route::get('/portfolio', 'HomeController@showPortfolio');
 Route::get('/create', 'HomeController@showCreate');
 
 Route::resource('posts', 'PostsController');
-// Route::get('/sayhello', function()
-// {
-	
-// 	return View::make('my-first-view');
-// });
 
-Route::get('/rolldice/{guess}', 'HomeController@showRoll');
+
+

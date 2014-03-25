@@ -35,14 +35,4 @@ class HomeController extends BaseController {
 		return View::make ('create');
 	}
 
-	public function showRoll($guess)
-	{
-		$roll = rand(1, 6);
-
-		$data = array (
-			'guess' => $guess,
-			'roll' => $roll 
-			);
-		return Redirect::action('roll-dice')->with($data);
-	}
 }
