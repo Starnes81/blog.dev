@@ -6,6 +6,7 @@
   	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 </head>
 <body>
+	<h1>Steven Starnes</h1>
     @yield('content')
     <div class="services-wrap  center">
         <br>
