@@ -30,6 +30,11 @@ class HomeController extends BaseController {
 		return View::make ('portfolio');
 	}
 
+	public function showCreate ()
+	{
+		return View::make ('create');
+	}
+
 	public function showRoll($guess)
 	{
 		$roll = rand(1, 6);

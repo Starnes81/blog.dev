@@ -18,8 +18,9 @@ Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/resume', 'HomeController@showResume');
 
-
 Route::get('/portfolio', 'HomeController@showPortfolio');
+
+Route::get('/create', 'HomeController@showCreate');
 
 Route::resource('posts', 'PostsController');
 // Route::get('/sayhello', function()
