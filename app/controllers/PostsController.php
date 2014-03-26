@@ -1,6 +1,6 @@
 <?php
 
-class PostsController extends \BaseController {
+class PostsController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,6 +9,15 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
+		$name = Input::has('test');
+
+		Log::info('This is some useful information.');
+
+		Log::warning('Something could be going wrong.');
+
+		Log::error('Something is really going wrong.');
+
+
 		return "this is index action";
 	}
 
@@ -19,7 +28,7 @@ class PostsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return "this is index action";
+		return View::make('posts.create');
 	}
 	
 
@@ -30,7 +39,9 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
-		return "this is index action";
+		return Redirect::action('PostsController@create')->withInput();
+
+		app::abort(404);
 	}
 	
 
