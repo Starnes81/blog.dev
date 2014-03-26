@@ -21,5 +21,9 @@ Route::get('/create', 'HomeController@showCreate');
 
 Route::resource('posts', 'PostsController');
 
-
-
+Route::get('orm-test', function() {
+	$posts = Post::all();
+	foreach ($posts as $post) {
+		echo '<h2>' . $post->title . '</h2>' . '<p>' . $post->body . '</p>';
+	}$posts;
+});
