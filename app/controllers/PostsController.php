@@ -97,7 +97,7 @@ class PostsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		return "this is index action";
+		// route::get('post',);
 	}
 	
 
