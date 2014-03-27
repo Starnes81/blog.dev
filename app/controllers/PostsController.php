@@ -72,7 +72,7 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$post = post::find($id);
+		$post = post::findOrFail($id);
 		return View::make('posts.show')->with('post', $post);
 	}
 	
@@ -85,7 +85,8 @@ class PostsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		return "this is index action";
+		$post = post::findOrFail($id);
+		return View::make('post.edit')->with('post', $post);
 	}
 	
 

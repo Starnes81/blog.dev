@@ -2,22 +2,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Create Post</title>
+    <title>Edit Post</title>
 </head>
 <body>
 @section('content')
 	<div class="blog-post">
 
-      {{ Form::open(array('action' => 'PostsController@store', 'class' => 'form-horizontal')) }}
+      {{ Form::open(array('action' => array('PostsController@update', $post->id), 'method'=> 'put', class' => 'form-horizontal')) }}
 
-	  <div class="form-group">
-
-
-			
-			
-
-
-	    
+	  <div class="form-group">							    
 	    <div class="col-sm-10">
 	      {{ Form::label('title', 'Title', array('class'=> 'col-sm-2 control-label')) }}
 		  {{ Form::text('title') }}
