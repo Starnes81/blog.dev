@@ -4,10 +4,72 @@
     <title>Laravel Blog</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <style type="text/css">
+
+    .row {
+        width: 1000px;
+        margin: auto;
+    }
+
+    body {
+        width: 1000px;
+        margin: auto;
+
+    }
+
+    h1, h2 {
+        text-align: left;
+        padding: 0px;
+        width: 1000px;
+    }
+
+    .blog-post {
+        position: left;
+    }
+
+    #menu {
+        float: left;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        margin-top: 150px;
+        padding: 10px;
+        
+    }
+    
+    .menuColor {
+        color: #F00;
+    }
+
+    .help-block {
+        color: #F00;
+    }
+    a:hover {
+        text-decoration: none;
+        color: #000;
+    }
+
+
+
+
+    </style>
 </head>
 <body>
+
+
+    <div id="menu">
+        <h4><a class="menuColor">Home</a></h4>
+        <h4><a class="menuColor" href="{{{ action('HomeController@showResume')}}}">Resume</a></h4>
+        <h4><a class="menuColor" href="{{{ action('HomeController@showPortfolio')}}}">Portfolio</a></h4>
+        <h4><a class="menuColor" href="{{{ action('PostsController@index')}}}">Blog</a></h4>
+    </div>
+
+
 	<h1>Steven Starnes</h1>
+    <h2>A Developing Photographer</h2>
+    <hr>
     @yield('content')
+    <hr>
     <div class="services-wrap  center">
         <br>
         <div class="row">

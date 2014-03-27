@@ -5,7 +5,6 @@
     <title>Laravel Blog</title>
 </head>
 <body>
-	<h2><a href="{{{ action('HomeController@showResume') }}}">Resume</a></h2>
    
 
 @section('portfolio')
