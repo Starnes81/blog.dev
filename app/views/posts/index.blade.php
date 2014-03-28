@@ -5,8 +5,9 @@
 @foreach ($posts as $post)
 	<div class="blog-post">
 		<h2><a href="{{{ action('PostsController@show', $post->id) }}}">{{$post->title}}</a></h2>
+		<p>{{ Str::words($post->body, 10) }}</p>
 		<p>Created: {{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A')}}</p>
-		<hr>
+		
 		
 	
 	</div>

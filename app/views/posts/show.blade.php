@@ -9,6 +9,7 @@
 <p><a href="{{{action('PostsController@index') }}}">Return to Posts</a></p>
 
 <p><a href="" id="btnDeletePost">Delete Post</a></p>
+<p><a href="{{{action('PostsController@edit', $post->id) }}}">Edit Post</a></p>
 
 {{Form::open(array('action'=> array('PostsController@destroy', $post->id), 'method' => 'delete', 'id' => 'formDeletePost' )) }}
 {{Form::close()}}

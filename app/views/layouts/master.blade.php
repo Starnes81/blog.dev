@@ -4,6 +4,7 @@
     <title>Laravel Blog</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <style type="text/css">
 
     .row {
@@ -38,7 +39,7 @@
     }
     
     .menuColor {
-        color: #F00;
+        color: #c93131;
     }
 
     .help-block {
@@ -50,9 +51,21 @@
     }
 
     .box {
-        height: 200px;
-        width: 150px;
+       
         background-color: #c93131;
+    }
+
+    .glyphicon {
+        font-size: 100px;
+        text-align: center;
+        margin: auto;
+        color: #c93131;
+        
+    }
+
+    .upper {
+        width: auto;
+        height: 120px;
     }
 
 
@@ -70,10 +83,17 @@
         <h4><a class="menuColor" href="{{{ action('PostsController@index')}}}">Blog</a></h4>
     </div>
 
-
-	<h1>Steven Starnes</h1>
-    <h2>A Developing Photographer</h2>
+    <div class="upper">
+	   <h1>Steven Starnes</h1>
+        <h2>A Developing Photographer</h2>
+    </div>
     <hr>
+        @if (Session::has('successMessage'))
+        <div class="alert alert-success">{{{ Session::get('successMessage') }}}</div>
+        @endif
+        @if (Session::has('errorMessage'))
+            <div class="alert alert-danger">{{{ Session::get('errorMessage') }}}</div>
+        @endif
     @yield('portfolio')
     @yield('content')
     <hr>
@@ -83,26 +103,26 @@
             
             <div class="col-lg-3  callout">
                 <span class="icon  icon-screen"></span>
-                <h2>Web Design.</h2> <!-- Title -->
-                <p>That tall drink of water with the silver spoon up his ass. you measure yourself by the people who measure themselves by you.</p> <!-- Description -->
+                <h2>Contact</h2> <!-- Title -->
+                <p><i class="fa fa-envelope glyphicon"></i></p> <!-- Description -->
             </div><!-- col-lg-3 -->
 					
             <div class="col-lg-3  callout">
                 <span class="icon  icon-quill"></span>
-                <h2>Branding.</h2>
-                <p>Well, what is it today? more spelunking? mister wayne, if you don't want to tell me exactly what you're doing, when i'm asked.</p>
+                <h2>Twitter</h2>
+                <p><i class="fa fa-twitter glyphicon"></i></span></p>
             </div><!-- col-lg-3 -->	
 				
             <div class="col-lg-3  callout">
                 <span class="icon  icon-cogs"></span>
-                <h2>Development.</h2>
-                <p>Your entrance was good, his was better. we got no food we got no money and our pets heads are falling off!</p>
+                <h2>GitHub</h2>
+                <p><i class="fa fa-github-alt glyphicon"></i></p>
             </div><!-- col-lg-3 -->	
                 
             <div class="col-lg-3  callout">
                 <span class="icon  icon-droplet"></span>
-                <h2>Illustration.</h2>
-                <p>Brain freeze. i just heard about evans new position,good luck to you evan backstabber, bastard, i mean baxter.</p>
+                <h2>LinkedIn</h2>
+                <p><i class="fa fa-linkedin-square glyphicon"></i></p>
             </div><!-- col-lg-3 -->	
             
         </div>

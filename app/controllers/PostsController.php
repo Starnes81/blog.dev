@@ -2,6 +2,17 @@
 
 class PostsController extends BaseController {
 
+
+	public function __construct()
+	{
+	    // call base controller constructor
+	    parent::__construct();
+	
+	    // run auth filter before all methods on this controller except index and show
+	    $this->beforeFilter('auth.basic',['except' => ['index', 'show']]);
+	}
+
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -17,7 +28,7 @@ class PostsController extends BaseController {
 
 		// Log::error('Something is really going wrong.');
 
-		$posts = Post::paginate(3);
+		$posts = Post::orderBy('created_at', 'desc')->paginate(3);
 		return View::make('posts.index')->with('posts',$posts);
 	}
 
@@ -45,6 +56,7 @@ class PostsController extends BaseController {
 
     	if ($validator->fails())
     	{
+    		Session::flash('successMessage', 'Post could not be created - see form errors');
     	    // validation failed, redirect to the post create page with validation errors and old inputs
     	    return Redirect::back()->withInput()->withErrors($validator);
     		}
@@ -57,6 +69,7 @@ class PostsController extends BaseController {
 	
 			$post->save();
 	
+			Session::flash('successMessage', 'Post created successfully');
 			return Redirect::action('PostsController@index');
 			
 		}
@@ -104,6 +117,7 @@ class PostsController extends BaseController {
 
     	if ($validator->fails())
     	{
+    		Session::flash('successMessage', 'Post could not be created - see form errors');
     	    // validation failed, redirect to the post create page with validation errors and old inputs
     	    return Redirect::back()->withInput()->withErrors($validator);
     		}
@@ -114,7 +128,7 @@ class PostsController extends BaseController {
 			$post->body = Input::get('body');
 	
 			$post->save();
-	
+			Session::flash('successMessage', 'Post Updated successfully');
 			return Redirect::action('PostsController@index');
 			
 		}
@@ -129,10 +143,12 @@ class PostsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		Post::find($id)->delete();
-	
 		
-		return Redirect::action('PostsController@index');
+			Post::find($id)->delete();
+    		Session::flash('successMessage', 'Post Deleted successfully');
+    	    
+
+			return Redirect::action('PostsController@index');
 	}
 	
 

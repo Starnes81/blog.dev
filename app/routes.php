@@ -23,6 +23,8 @@ Route::resource('posts', 'PostsController');
 
 Route::get('posts', 'PostsController@index');
 
+
+
 Route::get('index', function() {
 
 	$post1 = new Post();
