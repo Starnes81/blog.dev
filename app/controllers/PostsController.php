@@ -58,9 +58,7 @@ class PostsController extends BaseController {
 			$post->save();
 	
 			return Redirect::action('PostsController@index');
-			// return Redirect::action('PostsController@create')->withInput();
-			// return Redirect::action('PostsController@Index')->withInput();
-			// app::abort(404);
+			
 		}
 	}
 
@@ -72,7 +70,7 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$post = post::findOrFail($id);
+		$post = Post::findOrFail($id);
 		return View::make('posts.show')->with('post', $post);
 	}
 	
@@ -85,8 +83,8 @@ class PostsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$post = post::findOrFail($id);
-		return View::make('post.edit')->with('post', $post);
+		$post = Post::findOrFail($id);
+		return View::make('posts.edit')->with('post', $post);
 	}
 	
 
@@ -98,7 +96,28 @@ class PostsController extends BaseController {
 	 */
 	public function update($id)
 	{
-		// route::get('post',);
+
+		$post = Post::findOrFail($id);
+
+
+		$validator = Validator::make(Input::all(), Post::$rules);
+
+    	if ($validator->fails())
+    	{
+    	    // validation failed, redirect to the post create page with validation errors and old inputs
+    	    return Redirect::back()->withInput()->withErrors($validator);
+    		}
+    		else
+    		{
+
+			$post->title = Input::get('title');
+			$post->body = Input::get('body');
+	
+			$post->save();
+	
+			return Redirect::action('PostsController@index');
+			
+		}
 	}
 	
 
@@ -110,7 +129,10 @@ class PostsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		return "this is index action";
+		Post::find($id)->delete();
+	
+		
+		return Redirect::action('PostsController@index');
 	}
 	
 

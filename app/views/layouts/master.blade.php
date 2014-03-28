@@ -49,6 +49,12 @@
         color: #000;
     }
 
+    .box {
+        height: 200px;
+        width: 150px;
+        background-color: #c93131;
+    }
+
 
 
 
@@ -68,6 +74,7 @@
 	<h1>Steven Starnes</h1>
     <h2>A Developing Photographer</h2>
     <hr>
+    @yield('portfolio')
     @yield('content')
     <hr>
     <div class="services-wrap  center">
@@ -101,8 +108,11 @@
         </div>
         <br>
 
+    </div>
 
-
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+@yield('bottom-script')
 </body>
 </html>

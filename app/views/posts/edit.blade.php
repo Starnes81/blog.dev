@@ -8,11 +8,11 @@
 @section('content')
 	<div class="blog-post">
 
-      {{ Form::open(array('action' => array('PostsController@update', $post->id), 'method'=> 'put', class' => 'form-horizontal')) }}
+      {{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method'=> 'put', 'class' => 'form-horizontal')) }}
 
 	  <div class="form-group">							    
 	    <div class="col-sm-10">
-	      {{ Form::label('title', 'Title', array('class'=> 'col-sm-2 control-label')) }}
+	      {{ Form::label('title', null, array('class'=> 'col-sm-2 control-label')) }}
 		  {{ Form::text('title') }}
 	      {{$errors->has('title') ? $errors->first('title', '<p><span class="help-block">:message</span></p>') : '' }}
 	    </div>
@@ -20,8 +20,8 @@
 	  <div class="form-group">
 	    
 	    <div class="col-sm-10">
-	      {{ Form::label('body', 'Body', array('class'=> 'col-sm-2 control-label')) }}
-			{{ Form::textarea('body', null, array('row' => '5')) }}
+	      {{ Form::label('body', null, array('class'=> 'col-sm-2 control-label')) }}
+			{{ Form::textarea('body', null, array('row' => '10')) }}
 	      {{$errors->has('body') ? $errors->first('body', '<p><span class="help-block">:message</span></p>') : '' }}
 	    </div>
 	  </div>
@@ -32,7 +32,7 @@
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
-	      <button type="submit" class="btn btn-default">Post</button>
+	      <button type="submit" class="btn btn-default">Save Changes</button>
 	    </div>
 	  </div>
 	</form>
