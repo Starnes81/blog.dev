@@ -17,7 +17,7 @@ class PostsController extends BaseController {
 
 		// Log::error('Something is really going wrong.');
 
-		$posts = Post::all();
+		$posts = Post::paginate(3);
 		return View::make('posts.index')->with('posts',$posts);
 	}
 
