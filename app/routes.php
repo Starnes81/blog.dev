@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomeController@showWelcome');
 
+
+
 Route::get('/resume', 'HomeController@showResume');
 
 Route::get('/portfolio', 'HomeController@showPortfolio');
