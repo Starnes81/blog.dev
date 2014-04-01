@@ -20,16 +20,15 @@ class PostsController extends BaseController {
 	 */
 	public function index()
 	{
-		// $name = Input::has('test');
-
-		// Log::info('This is some useful information.');
-
-		// Log::warning('Something could be going wrong.');
-
-		// Log::error('Something is really going wrong.');
-
-		$posts = Post::orderBy('created_at', 'desc')->paginate(3);
-		return View::make('posts.index')->with('posts',$posts);
+		$search = Input::get('search');
+		$query = Post::orderBy('created_at', 'desc');
+		if (Input::has($search))
+		{	
+ 			$posts = $query->paginate(3);
+		} else {
+			$posts = $query->where('title','LIKE',"%{$search}%")->paginate(3);
+		}
+		return View::make('posts.index')->with(array('posts' => $posts));
 	}
 
 	/**

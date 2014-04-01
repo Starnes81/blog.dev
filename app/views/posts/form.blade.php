@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 <div>
 	{{ Form::label('title', 'Title') }}
     {{ Form::text('title', null) }}

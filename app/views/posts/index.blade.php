@@ -2,7 +2,13 @@
 
 
 @section('content')
+	{{ Form::open(array('action' => array('PostsController@index'), 'method' => 'GET' )) }}
+    	{{ Form::label('search', 'Search Posts') }}
+    	{{ Form::text('search') }}
+    	{{ Form::submit('Search') }}
+    {{ Form::close() }}
 @foreach ($posts as $post)
+
 	<div class="blog-post">
 		<h2><a href="{{{ action('PostsController@show', $post->id) }}}">{{$post->title}}</a></h2>
 		<p>{{ Str::words($post->body, 10) }}</p>
