@@ -1,12 +1,8 @@
 @extends('layouts.master')
 
 
+	
 @section('content')
-	{{ Form::open(array('action' => array('PostsController@index'), 'method' => 'GET' )) }}
-    	{{ Form::label('search', 'Search Posts') }}
-    	{{ Form::text('search') }}
-    	{{ Form::submit('Search') }}
-    {{ Form::close() }}
 @foreach ($posts as $post)
 
 	<div class="blog-post">
@@ -22,7 +18,8 @@
 @endforeach
 	{{ $posts->appends(array('search' => Input::get('search')))->links() }}
 	
+	<hr>
 
 		
-		<p><a href="{{ action('PostsController@create') }}"> Create new post</a></p>
+	<p><a href="{{ action('PostsController@create') }}"> Create new post</a></p>
 @stop

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/signin.css" rel="stylesheet">
     <style type="text/css">
 
     .row {
@@ -18,8 +19,14 @@
 
     }
 
-    h1, h2 {
+    h1, h2, {
         text-align: left;
+        padding: 0px;
+        width: 1000px;
+    }
+
+    h4 {
+        
         padding: 0px;
         width: 1000px;
     }
@@ -33,8 +40,11 @@
         position: fixed;
         top: 0px;
         left: 0px;
-        margin-top: 150px;
+        margin-top: 30px;
         padding: 10px;
+        width: 150px;
+        margin-left: 20px;
+
         
     }
     
@@ -56,10 +66,11 @@
     }
 
     .glyphicon {
-        font-size: 75px;
+        font-size: 50px;
         text-align: center;
         margin: auto;
         color: #c93131;
+
 
     }
 
@@ -77,45 +88,38 @@
 
 
     <div id="menu">
-        <h4><a class="menuColor">Home</a></h4>
-        <h4><a class="menuColor" href="{{{ action('HomeController@showResume')}}}">Resume</a></h4>
-        <h4><a class="menuColor" href="{{{ action('HomeController@showPortfolio')}}}">Portfolio</a></h4>
-        <h4><a class="menuColor" href="{{{ action('PostsController@index')}}}">Blog</a></h4>
+        {{ Form::open(array('action' => array('PostsController@index'), 'method' => 'GET' )) }}
+        {{ Form::label('search', 'Search Posts') }}
+        {{ Form::text('search') }}
+        {{ Form::submit('Search') }}
+        {{ Form::close() }}
+        @if(Auth::check())
+        <h4>Log Out <br><p>({{{Auth::user()->email}}})</p></h4>
+                <p><a href="{{{ action('HomeController@logout') }}}"><i class="fa fa-asterisk glyphicon"></i></a></i></p>
+        @else
+        <h4>Log In</h4>
+                <p><a href="{{{ action('HomeController@showLogin') }}}"><i class="fa fa-asterisk glyphicon"></i></a></i></p>
+        @endif
+        <h4>Blog</h4>
+                <p><a href="{{{ action('PostsController@index')}}}"><i class="fa fa-list glyphicon"></i></a></p>
+        <!-- <h4><a class="menuColor">Home</a></h4> -->
+        <h4>Resume</h4>
+                <p><a href="{{{ action('HomeController@showResume')}}}"><i class="fa fa-align-justify glyphicon"></i></a></p>
+        <h4>Portfolio</h4>
+                <p><a href="{{{ action('HomeController@showPortfolio')}}}"><i class="fa fa-th-large glyphicon"></i></a></p>
+        <h4>GitHub</h4>
+                <p><a href="https://github.com/Starnes81"><i class="fa fa-github-alt glyphicon"></a></i></p>
+        <h4>LinkedIn</h4>
+                <p><a href="http://www.linkedin.com/in/stevenstarnes/"><i class="fa fa-linkedin-square glyphicon"></i></a></p>
+        <h4>Contact<h4>
+                <p><a href=""><i class="fa fa-envelope glyphicon"></a></i></p>
     </div>
-
+  
     <div class="upper centered">
 	   <h1>Steven Starnes |  A Developing Photographer</h1>
         
     </div>
-    <div class="services-wrap  center">
-        <br>
-        <div class="row">
-            
-            <div class="col-lg-3  callout">
-                <span class="icon  icon-screen"></span>
-                <h2>Home</h2> <!-- Title -->
-                <p><i class="fa fa-home glyphicon"></i></p> <!-- Description -->
-            </div><!-- col-lg-3 -->
-                    
-            <div class="col-lg-3  callout">
-                <span class="icon  icon-quill"></span>
-                <h2>Resume</h2>
-                <p><a href="{{{ action('HomeController@showResume')}}}"><i class="fa fa-align-justify glyphicon"></i></a></p>
-            </div><!-- col-lg-3 --> 
-                
-            <div class="col-lg-3  callout">
-                <span class="icon  icon-cogs"></span>
-                <h2>Portfolio</h2>
-                <p><a href="{{{ action('HomeController@showPortfolio')}}}"><i class="fa fa-th-large glyphicon"></i></a></p>
-            </div><!-- col-lg-3 --> 
-                
-            <div class="col-lg-3  callout">
-                <span class="icon  icon-droplet"></span>
-                <h2>Blog</h2>
-                <p><i class="fa fa-list glyphicon"></i></p>
-            </div><!-- col-lg-3 --> 
-            
-        </div>
+    
     <hr>
         @if (Session::has('successMessage'))
         <div class="alert alert-success">{{{ Session::get('successMessage') }}}</div>
@@ -126,38 +130,7 @@
     @yield('portfolio')
     @yield('content')
     <hr>
-    <div class="services-wrap  center">
-        <br>
-        <div class="row">
-            
-            <div class="col-lg-3  callout">
-                <span class="icon  icon-screen"></span>
-                <h2>Contact</h2> <!-- Title -->
-                <p><i class="fa fa-envelope glyphicon"></i></p> <!-- Description -->
-            </div><!-- col-lg-3 -->
-					
-            <div class="col-lg-3  callout">
-                <span class="icon  icon-quill"></span>
-                <h2>Twitter</h2>
-                <p><i class="fa fa-twitter glyphicon"></i></span></p>
-            </div><!-- col-lg-3 -->	
-				
-            <div class="col-lg-3  callout">
-                <span class="icon  icon-cogs"></span>
-                <h2>GitHub</h2>
-                <p><i class="fa fa-github-alt glyphicon"></i></p>
-            </div><!-- col-lg-3 -->	
-                
-            <div class="col-lg-3  callout">
-                <span class="icon  icon-droplet"></span>
-                <h2>LinkedIn</h2>
-                <p><i class="fa fa-linkedin-square glyphicon"></i></p>
-            </div><!-- col-lg-3 -->	
-            
-        </div>
-        <br>
-
-    </div>
+    
 
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

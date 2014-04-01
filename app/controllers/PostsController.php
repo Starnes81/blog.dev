@@ -9,7 +9,8 @@ class PostsController extends BaseController {
 	    parent::__construct();
 	
 	    // run auth filter before all methods on this controller except index and show
-	    $this->beforeFilter('auth.basic',['except' => ['index', 'show']]);
+	    $this->beforeFilter('auth',['except' => ['index', 'show']]);
+
 	}
 
 
@@ -21,7 +22,7 @@ class PostsController extends BaseController {
 	public function index()
 	{
 		$search = Input::get('search');
-		$query = Post::orderBy('created_at', 'desc');
+		$query = Post::with('user')->orderBy('created_at', 'desc');
 		if (Input::has($search))
 		{	
  			$posts = $query->paginate(3);
@@ -29,6 +30,7 @@ class PostsController extends BaseController {
 			$posts = $query->where('title','LIKE',"%{$search}%")
 						   ->orWhere('body','LIKE',"%{$search}%")
 						   ->paginate(3);
+
 		}
 		return View::make('posts.index')->with(array('posts' => $posts));
 	}
@@ -65,6 +67,7 @@ class PostsController extends BaseController {
     		{
 
 			$post = new Post();
+			$post->user_id = 2;
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
 	
