@@ -56,7 +56,7 @@
     }
 
     .glyphicon {
-        font-size: 100px;
+        font-size: 75px;
         text-align: center;
         margin: auto;
         color: #c93131;
