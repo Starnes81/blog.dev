@@ -57,6 +57,8 @@ class PostsController extends BaseController {
 		// create the validator
     	$validator = Validator::make(Input::all(), Post::$rules);
 
+
+
     	if ($validator->fails())
     	{
     		Session::flash('successMessage', 'Post could not be created - see form errors');
@@ -67,17 +69,26 @@ class PostsController extends BaseController {
     		{
 
 			$post = new Post();
-			$post->user_id = 2;
+			$post->user_id = Auth::user()->id;
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
-	
+			if (Input::hasFile('image'))
+				{		
+				$imagePath = 'uploads/';
+				$extension = Input::file('image')->getClientOriginalExtension();
+				$imageName = uniqid() .'.'. $extension;
+				Input::file('image')->move($imagePath, $imageName);
+				$post->img = '/uploads/' . $imageName;
+				}
 			$post->save();
-	
 			Session::flash('successMessage', 'Post created successfully');
-			return Redirect::action('PostsController@index');
-			
+			return Redirect::action('PostsController@index');			
 		}
+
 	}
+
+	
+	
 
 	/**
 	 * Display the specified resource.

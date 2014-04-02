@@ -1,0 +1,13 @@
+convert login.blade.php ti use form builder
+
+
+show error for bad log in
+
+
+use session::flash()
+
+
+only allow post owner to edit post
+
+
+include first_name and last_name or user_name

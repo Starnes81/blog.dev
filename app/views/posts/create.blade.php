@@ -8,7 +8,7 @@
 @section('content')
 	<div class="blog-post">
 
-      {{ Form::open(array('action' => 'PostsController@store', 'class' => 'form-horizontal')) }}
+      {{ Form::open(array('action' => 'PostsController@store', 'class' => 'form-horizontal', 'files' => true)) }}
 
 	  <div class="form-group">
 
@@ -27,14 +27,15 @@
 	  <div class="form-group">
 	    
 	    <div class="col-sm-10">
-	      {{ Form::label('body', 'Body', array('class'=> 'col-sm-2 control-label')) }}
+	        {{ Form::label('body', 'Body', array('class'=> 'col-sm-2 control-label')) }}
 			{{ Form::textarea('body', null, array('row' => '5')) }}
-	      {{$errors->has('body') ? $errors->first('body', '<p><span class="help-block">:message</span></p>') : '' }}
+	        {{$errors->has('body') ? $errors->first('body', '<p><span class="help-block">:message</span></p>') : '' }}
 	    </div>
 	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
-	     
+	  		{{ Form::label('Upload Image') }}
+	  		{{ Form::file('image') }}
 	    </div>
 	  </div>
 	  <div class="form-group">
@@ -42,7 +43,7 @@
 	      <button type="submit" class="btn btn-default">Post</button>
 	    </div>
 	  </div>
-	</form>
+	{{ Form::close() }}
 
     </div> <!-- /container -->
    
