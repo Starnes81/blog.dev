@@ -11,6 +11,7 @@ class PostsController extends BaseController {
 	    // run auth filter before all methods on this controller except index and show
 	    $this->beforeFilter('auth',['except' => ['index', 'show']]);
 
+	    
 	}
 
 
@@ -74,11 +75,7 @@ class PostsController extends BaseController {
 			$post->body = Input::get('body');
 			if (Input::hasFile('image'))
 				{		
-				$imagePath = 'uploads/';
-				$extension = Input::file('image')->getClientOriginalExtension();
-				$imageName = uniqid() .'.'. $extension;
-				Input::file('image')->move($imagePath, $imageName);
-				$post->img = '/uploads/' . $imageName;
+					$post->imageUp(Input::file('image'));
 				}
 			$post->save();
 			Session::flash('successMessage', 'Post created successfully');
@@ -141,6 +138,10 @@ class PostsController extends BaseController {
 
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
+			if (Input::hasFile('image'))
+				{		
+					$post->imageUp(Input::file('image'));
+				}
 	
 			$post->save();
 			Session::flash('successMessage', 'Post Updated successfully');

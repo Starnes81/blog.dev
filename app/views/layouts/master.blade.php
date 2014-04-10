@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <title>Laravel Blog</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
     <link href="/css/signin.css" rel="stylesheet">
     <style type="text/css">
 
@@ -93,7 +95,7 @@
         {{ Form::submit('Search') }}
         {{ Form::close() }}
         @if(Auth::check())
-        <h5>Log Out <br><p>({{{Auth::user()->email}}})</p></h5>
+        <h5>Log Out <br><p>({{{Auth::user()->first_name}}})</p></h5>
                 <p><a href="{{{ action('HomeController@logout') }}}"><i class="fa fa-asterisk glyphicon"></i></a></i></p>
         @else
         <h5>Log In</h5>
@@ -107,9 +109,9 @@
         <h5>Portfolio</h5>
                 <p><a href="{{{ action('HomeController@showPortfolio')}}}"><i class="fa fa-th-large glyphicon"></i></a></p>
         <h5>GitHub</h4>
-                <p><a href="https://github.com/Starnes81"><i class="fa fa-github-alt glyphicon"></a></i></p>
+                <p><a href="https://github.com/Starnes81" target="_blank"><i class="fa fa-github-alt glyphicon"></a></i></p>
         <h5>LinkedIn</h5>
-                <p><a href="http://www.linkedin.com/in/stevenstarnes/"><i class="fa fa-linkedin-square glyphicon"></i></a></p>
+                <p><a href="http://www.linkedin.com/in/stevenstarnes/" target="_blank"><i class="fa fa-linkedin-square glyphicon"></i></a></p>
         <h5>Contact<h5>
                 <p><a href=""><i class="fa fa-envelope glyphicon"></a></i></p>
     </div>

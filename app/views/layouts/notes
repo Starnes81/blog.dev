@@ -11,3 +11,23 @@ only allow post owner to edit post
 
 
 include first_name and last_name or user_name
+
+
+
+if user id equals post user id = edit
+
+
+
+
+$slug = $route->getParameter('posts');
+
+$post = Post::findBySlug($slug);
+
+
+
+user.php
+
+publicManagePost($post)
+{
+	return $this->isAdmin() || $this->id == $post->user_id;
+}

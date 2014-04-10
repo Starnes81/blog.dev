@@ -10,6 +10,10 @@
 		<p>{{ Str::words($post->body, 10) }}</p>
 		<p>{{ $post->created_at->format('l, F jS Y @ h:i:s A')}}</p>
 		
+		<p>({{{$post->user->first_name}}})</p>
+		
+
+		
 		
 	
 	</div>
@@ -20,6 +24,7 @@
 	
 	<hr>
 
-		
+	@if (Auth::check())
 	<p><a href="{{ action('PostsController@create') }}"> Create new post</a></p>
+	@endif
 @stop

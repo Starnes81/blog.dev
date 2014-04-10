@@ -23,6 +23,14 @@ class Post extends BaseModel {
     		return $utc->setTimezone('America/Chicago'); 
     }
 
-
-
+    /** helper for image upload **/
+    public function imageUp($inputFile)
+    {
+                $imagePath = 'uploads/';
+                $extension = $inputFile->getClientOriginalExtension();
+                $imageName = uniqid() .'.'. $extension;
+                // $fullPathToImage = $imagePath . $imageName;
+                $inputFile->move($imagePath, $imageName);
+                $this->attributes['img'] = '/uploads/' . $imageName;
+    }
 }
